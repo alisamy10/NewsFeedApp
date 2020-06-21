@@ -53,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), NewsAdapter.Interaction,
                     if (it.data != null) {
                         ProgressBar.gone()
                         swipeRefresh.isRefreshing = false
-                        newsAdapter.differ.submitList(it.data)
+                        newsAdapter.submitList(it.data)
                         responseList.addAll(it.data)  // add the call from api to list in memory to search
                     }
                 }
@@ -94,7 +94,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), NewsAdapter.Interaction,
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        newsAdapter.differ.submitList(searchQuery(newText, responseList))
+        newsAdapter.submitList(searchQuery(newText, responseList))
         return true
     }
 
