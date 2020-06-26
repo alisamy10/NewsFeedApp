@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.newsfeedapp.R
 import com.example.newsfeedapp.common.dateFormat
@@ -15,19 +16,8 @@ import org.koin.core.KoinComponent
 import org.koin.core.get
 
 class NewsAdapter(private val interaction: Interaction? = null) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    ListAdapter<Article, RecyclerView.ViewHolder>(NewsAdapter.diff) {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
-
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
-        }
-
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
-        }
-    }
-    val differ = AsyncListDiffer(this, diffCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -44,13 +34,9 @@ class NewsAdapter(private val interaction: Interaction? = null) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is NewsViewHolder -> {
-                holder.bind(differ.currentList[position])
+                holder.bind(getItem(position))
             }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
     }
 
     class NewsViewHolder(itemView: View, private val interaction: Interaction?) :
@@ -73,5 +59,20 @@ class NewsAdapter(private val interaction: Interaction? = null) :
     interface Interaction {
         fun onItemSelected(position: Int, item: Article)
     }
+
+    companion object{
+
+        val diff = object : DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem.url == newItem.url
+            }
+
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem == newItem
+            }
+        }
+
+    }
+
 }
 

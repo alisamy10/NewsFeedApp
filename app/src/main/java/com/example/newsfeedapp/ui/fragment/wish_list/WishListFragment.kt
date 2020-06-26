@@ -50,7 +50,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list), NewsAdapter.Inte
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                val article = newsAdapter.differ.currentList[position]
+                val article = newsAdapter.currentList[position]
                 viewModel.deleteArticle(article)
 
                 Snackbar.make(view, getString(R.string.deleteArticle), Snackbar.LENGTH_LONG).apply {
@@ -70,7 +70,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list), NewsAdapter.Inte
     private fun observeToFavLiveData() {
         viewModel.getSavedArticles()?.observe(viewLifecycleOwner, Observer { articles ->
             if (articles != null) {
-                newsAdapter.differ.submitList(articles.reversed())
+                newsAdapter.submitList(articles.reversed())
                 favList.addAll(articles)
             }
         })
@@ -122,7 +122,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list), NewsAdapter.Inte
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        newsAdapter.differ.submitList(searchQuery(newText,favList))
+        newsAdapter.submitList(searchQuery(newText,favList))
         return true
     }
 }
