@@ -27,8 +27,6 @@ The following diagram shows all the modules and how each module interact with on
 ![Screenshot_20200515-202423 1](https://user-images.githubusercontent.com/55722619/82084228-d1ad8d80-969f-11ea-9eb5-eb566068c229.png)
 * Home Cached from api using room
 ![Screenshot_20200515-202114 1](https://user-images.githubusercontent.com/55722619/82084328-fd307800-969f-11ea-8c5c-948c05c4d7e1.png)
-* Nav Drawer
-![Screenshot_20200515-211532 1](https://user-images.githubusercontent.com/55722619/82088164-1e946280-96a6-11ea-8c61-bc2671135f3f.png)
 * Favourite
 ![Screenshot_20200515-180027 2](https://user-images.githubusercontent.com/55722619/82084661-792ac000-96a0-11ea-9ce9-1fc3232b1cfb.png)
 * Delete All 
