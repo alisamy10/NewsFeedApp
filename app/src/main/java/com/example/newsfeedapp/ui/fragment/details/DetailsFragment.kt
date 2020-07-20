@@ -70,8 +70,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details), KoinComponent {
 
         titleTxt.text = args.article.title
         authorNameTxt.text = args.article.author
-        dateTxt.text = dateFormat(args.article.publishedAt)
-        articleTimeAgo.text = dateToTimeFormat(args.article.publishedAt)
+        dateTxt.text = args.article.publishedAt?.dateFormat()
+        articleTimeAgo.text = args.article.publishedAt?.dateToTimeFormat()
         descriptionTxt.text = args.article.description
     }
 

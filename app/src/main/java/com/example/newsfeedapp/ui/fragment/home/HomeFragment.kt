@@ -112,7 +112,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), NewsAdapter.Interaction,
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        newsAdapter.differ.submitList(searchQuery(newText, responseList))
+        newsAdapter.differ.submitList(newText?.searchQuery( responseList))
         return true
     }
 

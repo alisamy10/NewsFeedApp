@@ -66,7 +66,7 @@ class NewsAdapter(private val interaction: Interaction? = null) :
                 .into(articleImage)
             titleTxt.text = item.title
             authorNameTxt.text = "By ${item.author} "
-            dateTxt.text = "${dateFormat(item.publishedAt)}"
+            dateTxt.text = "${item.publishedAt?.dateFormat()}"
         }
     }
 
